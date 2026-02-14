@@ -19,6 +19,17 @@ class QdrantStore(VectorStore):
             ),
         )
 
+    def ensure_collection(self, name: str, dim: int):
+        collections = self.client.get_collections().collections
+        exists = any(c.name == name for c in collections)
+
+        if not exists:
+            self.client.create_collection(
+                collection_name=name,
+                vectors_config=VectorParams(size=dim, distance=Distance.COSINE),
+            )
+
+
     def upsert(
         self,
         collection: str,

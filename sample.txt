@@ -1,0 +1,29 @@
+Python is a popular programming language used for backend, data science, and automation.
+
+Qdrant is a vector database designed for similarity search and AI applications.
+
+Bengaluru is a major city in India and is known as a technology hub.
+
+Azure provides cloud services including compute, storage, and AI capabilities.
+
+Vector embeddings convert text into numbers so machines can compare meaning.
+
+Docker allows applications to run in containers with isolated environments.
+
+Large language models can answer questions based on stored knowledge.
+
+React is a JavaScript library for building user interfaces.
+
+PostgreSQL is a relational database known for reliability and performance.
+
+Microservices architecture splits systems into small independent services.
+
+Machine learning models require good data to produce accurate predictions.
+
+India has many fast growing startups in fintech and e-commerce.
+
+APIs allow communication between different software systems.
+
+Search engines rank documents based on relevance to a query.
+
+Semantic search focuses on meaning rather than keyword matching.

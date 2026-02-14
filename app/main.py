@@ -1,40 +1,28 @@
-from app.embedding.local import LocalEmbeddingProvider
-from app.vectordb.qdrant_store import QdrantStore
-
-
-COLLECTION = "demo"
+from app.cli.console import run_console
+from app.ingest.pipeline import ingest_file
 
 
 def main():
-    embedder = LocalEmbeddingProvider()
-    store = QdrantStore()
+    while True:
+        print("\nChoose option:")
+        print("1. Ingest text file")
+        print("2. Search console")
+        print("3. Exit")
 
-    texts = [
-        "Python is a programming language",
-        "Qdrant stores vectors",
-        "Bengaluru is in India",
-    ]
+        choice = input("Enter choice: ").strip()
 
-    vectors = embedder.embed(texts)
+        if choice == "1":
+            path = input("Enter file path: ").strip()
+            ingest_file(path)
 
-    dim = len(vectors[0])
-    store.create_collection(COLLECTION, dim)
+        elif choice == "2":
+            run_console()
 
-    store.upsert(
-        COLLECTION,
-        ids=list(range(len(texts))),
-        vectors=vectors,
-        payloads=[{"text": t} for t in texts],
-    )
+        elif choice == "3":
+            break
 
-    q = "Where is Bengaluru?"
-    qvec = embedder.embed([q])[0]
-
-    results = store.search(COLLECTION, qvec)
-
-    for r in results:
-        print(f"score={r.score:.4f} id={r.id} text={r.payload['text']}")
-
+        else:
+            print("Invalid choice")
 
 
 if __name__ == "__main__":
