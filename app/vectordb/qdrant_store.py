@@ -1,7 +1,7 @@
-from typing import List, Dict, Any
+from typing import Any
 
 from qdrant_client import QdrantClient
-from qdrant_client.models import VectorParams, Distance, PointStruct
+from qdrant_client.models import Distance, PointStruct, VectorParams
 
 from .base import VectorStore
 
@@ -29,13 +29,12 @@ class QdrantStore(VectorStore):
                 vectors_config=VectorParams(size=dim, distance=Distance.COSINE),
             )
 
-
     def upsert(
         self,
         collection: str,
-        ids: List[int],
-        vectors: List[List[float]],
-        payloads: List[Dict[str, Any]],
+        ids: list[int],
+        vectors: list[list[float]],
+        payloads: list[dict[str, Any]],
     ):
         points = [
             PointStruct(
@@ -48,11 +47,10 @@ class QdrantStore(VectorStore):
 
         self.client.upsert(collection_name=collection, points=points)
 
-    def search(self, collection: str, vector: List[float], limit: int = 5):
+    def search(self, collection: str, vector: list[float], limit: int = 5):
         response = self.client.query_points(
             collection_name=collection,
             query=vector,
             limit=limit,
         )
         return response.points
-

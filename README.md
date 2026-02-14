@@ -58,3 +58,14 @@ Console:
 ```
 uv run python -m app.cli.console
 ```
+
+## Common commands
+
+| Task | Command |
+| --- | --- |
+| Run script | `uv run python main.py` |
+| Dev server | `uv run fastapi dev` |
+| Prod server | `uv run fastapi run` |
+| Lint | `uv run ruff check .` |
+| Lint (fix) | `uv run ruff check . --fix` |
+| Format | `uv run ruff format .` |

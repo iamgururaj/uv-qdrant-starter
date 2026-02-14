@@ -1,12 +1,12 @@
 from app.embedding.local import LocalEmbeddingProvider
-from app.vectordb.qdrant_store import QdrantStore
-from .loader import load_text
-from .chunker import chunk_text
 from app.helper.hash_utils import make_id
-from hashlib import md5
+from app.vectordb.qdrant_store import QdrantStore
 
+from .chunker import chunk_text
+from .loader import load_text
 
 COLLECTION = "docs"
+
 
 def ingest_file(path: str):
     embedder = LocalEmbeddingProvider()
@@ -27,6 +27,7 @@ def ingest_file(path: str):
 
     print(f"Inserted {len(chunks)} chunks")
 
+
 if __name__ == "__main__":
     import sys
 
@@ -35,4 +36,3 @@ if __name__ == "__main__":
         sys.exit(1)
 
     ingest_file(sys.argv[1])
-

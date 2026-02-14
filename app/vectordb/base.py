@@ -1,9 +1,8 @@
 from abc import ABC, abstractmethod
-from typing import List, Dict, Any
+from typing import Any
 
 
 class VectorStore(ABC):
-
     @abstractmethod
     def create_collection(self, name: str, dim: int):
         pass
@@ -12,12 +11,12 @@ class VectorStore(ABC):
     def upsert(
         self,
         collection: str,
-        ids: List[int],
-        vectors: List[List[float]],
-        payloads: List[Dict[str, Any]],
+        ids: list[int],
+        vectors: list[list[float]],
+        payloads: list[dict[str, Any]],
     ):
         pass
 
     @abstractmethod
-    def search(self, collection: str, vector: List[float], limit: int = 5):
+    def search(self, collection: str, vector: list[float], limit: int = 5):
         pass

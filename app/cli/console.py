@@ -4,6 +4,7 @@ from app.vectordb.qdrant_store import QdrantStore
 COLLECTION = "docs"
 MIN_SCORE = 0.50
 
+
 def run_console():
     embedder = LocalEmbeddingProvider()
     store = QdrantStore()
@@ -22,6 +23,7 @@ def run_console():
                 continue
             print(f"\nscore={r.score:.3f}")
             print(r.payload["text"])
+
 
 if __name__ == "__main__":
     run_console()

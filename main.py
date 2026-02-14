@@ -1,6 +1,12 @@
-def main():
-    print("Hello from uv-qdrant-starter!")
+from fastapi import FastAPI
+
+from app.features.search.search_api import router as SearchRouter
+
+app = FastAPI()
+
+app.include_router(SearchRouter)
 
 
-if __name__ == "__main__":
-    main()
+@app.get("/")
+def read_root():
+    return {"status": "success", "app": "uv-qdrant-starter", "tool": "uv", "framework": "FastAPI"}
