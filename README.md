@@ -2,7 +2,6 @@
 
 Small template to learn embeddings, vector storage, and semantic search locally.
 
----
 
 ## Dependencies
 
@@ -11,7 +10,6 @@ Small template to learn embeddings, vector storage, and semantic search locally.
 * sentence-transformers
 * Qdrant (Docker)
 
----
 
 ## Init project
 
@@ -19,7 +17,6 @@ Small template to learn embeddings, vector storage, and semantic search locally.
 uv init --app .
 ```
 
----
 
 ## Start Qdrant
 
@@ -33,9 +30,9 @@ Open:
 
 ```
 http://localhost:6333
+http://localhost:6333/dashboard
 ```
 
----
 
 ## Run
 
@@ -43,7 +40,6 @@ http://localhost:6333
 uv run python -m app.main
 ```
 
----
 
 ## Direct commands
 
@@ -69,3 +65,61 @@ uv run python -m app.cli.console
 | Lint | `uv run ruff check .` |
 | Lint (fix) | `uv run ruff check . --fix` |
 | Format | `uv run ruff format .` |
+
+docker stop qdrant-local
+
+docker start qdrant-local
+A minimal template for local embeddings, vector storage, and semantic search.
+
+---
+
+## Requirements
+
+- Python
+- uv
+- sentence-transformers
+- Qdrant (Docker)
+
+---
+
+## Quickstart
+
+**Initialize:**
+```sh
+uv init --app .
+```
+
+**Start Qdrant:**
+```sh
+docker run -d --name qdrant-local -p 6333:6333 \
+  -v $(pwd)/qdrant_data:/qdrant/storage \
+  qdrant/qdrant
+```
+Visit: [http://localhost:6333](http://localhost:6333)
+
+**Run main app:**
+```sh
+uv run python -m app.main
+```
+
+---
+
+## Useful Commands
+
+**Ingest data:**
+```sh
+uv run python -m app.ingest.pipeline sample.txt
+```
+
+**Open console:**
+```sh
+uv run python -m app.cli.console
+```
+
+---
+
+**Qdrant control:**
+```sh
+docker stop qdrant-local
+docker start qdrant-local
+```
